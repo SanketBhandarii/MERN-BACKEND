@@ -4,17 +4,17 @@ import dotenv from "dotenv";
 import cors from "cors";
 import route from './routes/userRoute.js';
 
-dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+dotenv.config();
 
 const PORT = process.env.PORT || 7000;
 const URL = process.env.MONGOURL;
 
 mongoose
-  .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(URL)
   .then(() => {
     console.log("DB Connected");
 
@@ -27,9 +27,7 @@ mongoose
 app.use("/api", route);
 
 app.use((err, req, res, next) => {
-  const { status = 400, message = "Something went wrong" } = err;
-  res.status(status).json({ message });
-  next(err);
-});
-
-export default app;
+   const {status = 400 , message = "Something went wrong"} = err;
+   res.status(status).json(message);
+   next(err)
+})
