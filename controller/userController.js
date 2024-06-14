@@ -3,7 +3,7 @@ import User from "../model/userModel.js";
 export const create = async (req, res) => {
   const userData = new User(req.body);
   const saveData = await userData.save();
-  res.status(200).json({msg : 'User data saved successfully'})
+  res.status(200).json({msg : 'Quote saved successfully'})
 };
 
 export const getAll = async (req, res) => {
@@ -18,11 +18,11 @@ export const getOne = async (req, res) => {
 
 export const update = async (req, res) => {
   const userData = await User.findByIdAndUpdate(req.params.id, req.body, {new:true});
-  res.status(200).json({msg : "Data successfully updated"})
+  res.status(200).json({msg : "Quote successfully updated"})
 };
 
 export const deleteUser = async (req, res) => {
   const userData = await User.findByIdAndDelete(req.params.id);
-  res.status(200).json({msg : "Data deleted successfully"})
+  res.status(200).json({msg : "Quote deleted successfully"})
 };
 
